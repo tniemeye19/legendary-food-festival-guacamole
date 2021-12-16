@@ -3,7 +3,14 @@ const webpack = require('webpack');
 const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 const WebpackPwaManifest = require('webpack-pwa-manifest');
 
-module.exports = {
+const config = {
+    devServer: {
+        static: {
+          directory: path.join(__dirname, './'),
+        },
+        compress: true,
+        port: 8080,
+    },
     entry: {
         app: './assets/js/script.js',
         events: './assets/js/events.js',
@@ -12,7 +19,7 @@ module.exports = {
     },
     output: {
         filename: '[name].bundle.js',
-        path: __dirname + '/dist',
+        path: path.join(__dirname + '/dist'),
     },
     module: {
         rules: [
@@ -65,4 +72,4 @@ module.exports = {
     mode: 'development'
 };
 
-// module.exports = config;
+module.exports = config;
